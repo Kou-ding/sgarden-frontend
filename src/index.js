@@ -24,28 +24,9 @@ import ResetPassword from "./screens/ResetPassword.js";
 import SignUp from "./screens/SignUp.js";
 import InvitedSignUp from "./screens/InvitedSignUp.js";
 import Auth from "./screens/Auth.js";
-import Examples from "./screens/Examples.js";
 import Home from "./screens/Home.js";
 import Users from "./screens/Users.js";
-import ButtonsExample from "./examples/Buttons.js";
-import CardExample from "./examples/Card.js";
-import FormExample from "./examples/Form.js";
-import DropdownExample from "./examples/Dropdown.js";
-import TooltipExample from "./examples/Tooltip.js";
-import TableExample from "./examples/Table.js";
-import FileUploadExample from "./examples/FileUpload.js";
-import BrokerExample from "./examples/Broker.js";
-import PlotExample from "./examples/Plot.js";
-import AccordionExample from "./examples/Accordion.js";
-import SearchExample from "./examples/Search.js";
-import ToastExample from "./examples/Toast.js";
-import PopupExample from "./examples/Popup.js";
-import DialogExample from "./examples/Dialog.js";
-import DatePickerExample from "./examples/DatePicker.js";
-import LocalizationExample from "./examples/Localization.js";
 import { adjustColors, jwt, colorSuggestions } from "./utils/index.js";
-
-import "./i18n.js";
 
 const {
 	NODE_ENV,
@@ -114,26 +95,7 @@ const App = () => {
 								<Route path="sign-up" element={<GuestOnly c={<SignUp />} />} />
 								<Route path="register" element={<GuestOnly c={<InvitedSignUp />} />} />
 								<Route path="home" element={<Protected c={<Home />} />} />
-								<Route path="examples" element={<Protected c={<Examples />} />} />
 								<Route path="users" element={<Protected c={<Users />} />} />
-								{/* EXAMPLES */}
-								<Route path="buttons" element={<Protected c={<ButtonsExample />} />} />
-								<Route path="card" element={<Protected c={<CardExample />} />} />
-								<Route path="form" element={<Protected c={<FormExample />} />} />
-								<Route path="dropdown" element={<Protected c={<DropdownExample />} />} />
-								<Route path="tooltip" element={<Protected c={<TooltipExample />} />} />
-								<Route path="table" element={<Protected c={<TableExample />} />} />
-								<Route path="file-upload" element={<Protected c={<FileUploadExample />} />} />
-								<Route path="broker" element={<Protected c={<BrokerExample />} />} />
-								<Route path="plot" element={<Protected c={<PlotExample />} />} />
-								<Route path="accordion" element={<Protected c={<AccordionExample />} />} />
-								<Route path="search" element={<Protected c={<SearchExample />} />} />
-								<Route path="toast" element={<Protected c={<ToastExample />} />} />
-								<Route path="popup" element={<Protected c={<PopupExample />} />} />
-								<Route path="dialog" element={<Protected c={<DialogExample />} />} />
-								<Route path="datepicker" element={<Protected c={<DatePickerExample />} />} />
-								<Route path="localization" element={<Protected c={<LocalizationExample />} />} />
-								{/* END OF EXAMPLES */}
 								<Route path="*" element={<NotFound />} />
 							</Routes>
 						</main>

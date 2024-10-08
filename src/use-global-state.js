@@ -3,12 +3,12 @@ import { persist } from "zustand/middleware";
 
 export default create(persist(
 	(setState) => ({
-		name: "",
-		setName: (name) => setState({ name }),
+		user: {},
+		setUser: (user) => setState({ user }),
 		defaultPageSize: 5,
 		setDefaultPageSize: (defaultPageSize) => setState({ defaultPageSize }),
 	}),
 	{
-		name: "template-frontend",
+		name: "sgarden",
 	},
 ));

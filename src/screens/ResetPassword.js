@@ -8,7 +8,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { useSnackbar } from "../utils/index.js";
 import Spinner from "../components/Spinner.js";
-import background from "../assets/images/background.png";
+import background from "../assets/images/background.jpg";
 import { resetPassword } from "../api/index.js";
 import Form from "../components/Form.js";
 
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: "300px",
 	},
 	subtitle: {
-		color: theme.palette.secondary.main,
+		color: theme.palette.third.main,
 		letterSpacing: theme.spacing(0.1),
 		maxWidth: "300px",
 	},
@@ -111,6 +111,7 @@ const ResetPassword = () => {
 			id: "submit",
 			type: "submit",
 			text: "Change Password",
+			buttonColor: "third",
 		},
 	];
 

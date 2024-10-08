@@ -61,14 +61,10 @@ const api = {
 export default api;
 
 export const authenticate = (username, password) => api.post("authenticate", { username, password });
-export const authenticateGoogle = (token) => api.post("authenticateGoogle", { token });
 export const forgotPassword = (username) => api.post("forgotPassword", { username });
 export const resetPassword = (password, token) => api.post("resetPassword", { password, token });
 export const signUp = (username, email, password) => api.post("createUser", { username, email, password });
 export const invitedSignUp = (username, email, password, token) => api.post("createUserInvited", { username, email, password, token });
-export const uploadFile = (body) => rootApi.post("file/", { body }).json();
-export const reUploadFile = (body) => rootApi.put("file/", { body }).json();
-export const deleteFile = (info) => api.post("file/delete/", info);
 export const inviteUser = (email) => api.post("user", { email });
 export const removeUser = (id) => api.post("user/delete", { id });
 export const getUsersData = () => api.get("user");

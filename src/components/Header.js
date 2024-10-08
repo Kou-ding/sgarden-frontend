@@ -11,9 +11,7 @@ import { Image } from "mui-image";
 
 import { jwt, capitalize } from "../utils/index.js";
 import logo from "../assets/images/logo.png";
-import inspectionIcon from "../assets/icons/inspection.png";
-import servicesIcon from "../assets/icons/services.png";
-import logoutIcon from "../assets/icons/logout.png";
+import { ReactComponent as LogoutIcon } from "../assets/images/logout.svg";
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -65,12 +63,23 @@ const useStyles = makeStyles((theme) => ({
 	grey: {
 		color: "grey.500",
 	},
+	svgIcon: {
+		width: "100%",
+		height: "100%",
+		"& g": {
+			"& path": {
+				fill: theme.palette.secondary.main,
+			},
+		},
+	},
 }));
 
 const ButtonWithText = ({ text, icon, more, handler }) => (
 	<Button sx={{ height: "100%", display: "flex", flexDirection: "column", p: 1, mx: 1 }} onClick={(event) => handler(event)}>
-		<Image src={icon} alt={text} fit="contain" sx={{ p: 0, my: 0, height: "100%", maxWidth: "200px" }} />
-		<Typography align="center" color="primary.main" fontSize="small" fontWeight="bold" display="flex" alignItems="center" sx={{ textTransform: "capitalize" }}>
+		<div style={{ width: "100%", height: "100%" }}>
+			{icon}
+		</div>
+		<Typography align="center" color="secondary.main" fontSize="small" fontWeight="bold" display="flex" alignItems="center" sx={{ textTransform: "capitalize" }}>
 			{text}
 			{more && <ExpandMore />}
 		</Typography>
@@ -82,50 +91,19 @@ const Header = ({ isAuthenticated }) => {
 
 	const location = useLocation();
 	const navigate = useNavigate();
-	const [anchorElServices, setAnchorElServices] = useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
-	const isMenuOpenServices = Boolean(anchorElServices);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-	const handleServicesMenuOpen = (event) => setAnchorElServices(event.currentTarget);
 	const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
-	const handleServicesMenuClose = () => { setAnchorElServices(null); handleMobileMenuClose(); };
 	const handleMobileMenuOpen = (event) => setMobileMoreAnchorEl(event.currentTarget);
-	const closeAll = () => {
-		handleServicesMenuClose();
-		handleMobileMenuClose();
-	};
 
-	const CrumpLink = styled(Link)(({ theme }) => ({ display: "flex", color: theme.palette.primary.main }));
+	const CrumpLink = styled(Link)(({ theme }) => ({ display: "flex", color: theme.palette.third.main }));
 
 	const buttons = [
 		{
-			icon: inspectionIcon,
-			text: "Inspection",
-			handler: () => {
-				closeAll();
-				navigate("/inspection");
-			},
-		},
-		{
-			icon: servicesIcon,
-			text: "Services",
-			handler: (event) => {
-				closeAll();
-				handleServicesMenuOpen(event);
-			},
-			more: [
-				{ title: "Users", path: "/users", icon: servicesIcon },
-				{ title: "Services", path: "/services", icon: servicesIcon },
-				{ title: "Hacking", path: "/hacking", icon: servicesIcon },
-			],
-		},
-		{
-			icon: logoutIcon,
+			icon: <LogoutIcon className={classes.svgIcon} />,
 			text: "Logout",
 			handler: () => {
-				closeAll();
 				jwt.destroyToken();
 				navigate("/");
 			},
@@ -143,27 +121,9 @@ const Header = ({ isAuthenticated }) => {
 		>
 			{buttons.map((button) => (
 				<MenuItem key={button.text} onClick={button.handler}>
-					<Image src={button.icon} width="20px" />
+					<Image src={button.icon} width="20px" sx={{ fill: "third" }} />
 					<p style={{ marginLeft: "5px" }}>{button.text}</p>
 					{button.more && <ExpandMore />}
-				</MenuItem>
-			))}
-		</Menu>
-	);
-
-	const renderServicesMenu = (
-		<Menu
-			keepMounted
-			anchorEl={anchorElServices}
-			anchorOrigin={{ vertical: "top", horizontal: "right" }}
-			transformOrigin={{ vertical: "top", horizontal: "right" }}
-			open={isMenuOpenServices}
-			onClose={handleServicesMenuClose}
-		>
-			{buttons.find((button) => button.text === "Services").more.map((moreButton) => (
-				<MenuItem key={moreButton.title} onClick={() => { closeAll(); navigate(moreButton.path); }}>
-					<Image src={moreButton.icon} width="20px" />
-					<p style={{ marginLeft: "5px" }}>{moreButton.title}</p>
 				</MenuItem>
 			))}
 		</Menu>
@@ -181,14 +141,6 @@ const Header = ({ isAuthenticated }) => {
 		let text = capitalize(path);
 		// eslint-disable-next-line no-continue
 		if (path === "home") continue;
-		switch (path) {
-			case "file-upload": {
-				text = "File Upload";
-				break;
-			}
-
-			default:
-		}
 
 		crumps.push(<CrumpLink to={`/${pathnames.slice(0, ind + 1).join("/")}`}>{text}</CrumpLink>);
 	}
@@ -232,7 +184,6 @@ const Header = ({ isAuthenticated }) => {
 			&& (
 				<>
 					{renderMobileMenu}
-					{renderServicesMenu}
 				</>
 			)}
 		</>

@@ -10,7 +10,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { useSnackbar } from "../utils/index.js";
 import Spinner from "../components/Spinner.js";
-import background from "../assets/images/background.png";
+import background from "../assets/images/background.jpg";
 import { signUp } from "../api/index.js";
 import Form from "../components/Form.js";
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: "300px",
 	},
 	subtitle: {
-		color: theme.palette.secondary.main,
+		color: theme.palette.third.main,
 		letterSpacing: theme.spacing(0.1),
 		maxWidth: "300px",
 	},
@@ -140,6 +140,7 @@ const SignUp = () => {
 			id: "submit",
 			type: "submit",
 			text: "Sign Up",
+			buttonColor: "third",
 		},
 	];
 
@@ -150,7 +151,7 @@ const SignUp = () => {
 				<Grid item container direction="column" justifyContent="center" align="center" sm={5} xs={12} sx={{ "> .MuiGrid-item": { p: 1 } }}>
 					<Grid item mt={2}>
 						<Typography variant="h4" className={classes.title}>{"Sign Up"}</Typography>
-						<Typography variant="h5" className={classes.subtitle}>{"to eenspector Platform"}</Typography>
+						<Typography variant="h5" className={classes.subtitle}>{"to SGarden Platform"}</Typography>
 					</Grid>
 					<Grid item container direction="column" justifyContent="center" alignItems="center">
 						<Form content={formContent} validationSchema="signUpSchema" onSubmit={submitHandler} />

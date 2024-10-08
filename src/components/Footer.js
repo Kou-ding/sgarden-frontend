@@ -26,8 +26,8 @@ const Footer = () => {
 	return (
 		<AppBar id="footer" position="static" className={classes.grow}>
 			<Toolbar className="header-container">
-				<Box className={classes.box} component={Link} target="_blank" href="https://r4a.issel.ee.auth.gr" rel="noreferrer">
-					<Image src={logo} alt="Logo" fit="contain" width="100%" height="100%" />
+				<Box className={classes.box} component={Link} target="_blank" href="https://issel.ee.auth.gr" rel="noreferrer">
+					<Image src={logo} alt="Logo" fit="contain" height="100%" style={{ width: "auto" }} />
 				</Box>
 				<Box className={classes.grow} style={{ height: "100%" }} />
 				<Box className={classes.grow} display="flex" style={{ height: "100%", justifyContent: "flex-end", alignItems: "center" }}>

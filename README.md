@@ -1,4 +1,4 @@
-This is a template frontend.
+The frontend of SGarden platform.
 
 ## Prerequisites
 

@@ -7,7 +7,7 @@ import { validations } from "../utils/index.js";
 
 // eslint-disable-next-line import/no-named-as-default
 import Input from "./Input.js";
-import { SecondaryBackgroundButton } from "./Buttons.js";
+import { HighlightBackgroundButton, SecondaryBackgroundButton } from "./Buttons.js";
 import Dropdown from "./Dropdown.js";
 import Checkbox from "./Checkbox.js";
 import RadioButtons from "./RadioButtons.js";
@@ -376,15 +376,29 @@ const Form = forwardRef(({ disabled: dsb, content, validationSchema, onSubmit, o
 							)}
 							{comp.customType === "button"
 							&& (
-								<SecondaryBackgroundButton
-									id={comp.id}
-									type={comp.type}
-									disabled={formikProps.isSubmitting || disabled}
-									className={classes.button}
-									size="large"
-									width="100%"
-									title={comp.text}
-								/>
+								comp.buttonColor === "third"
+									? (
+										<HighlightBackgroundButton
+											id={comp.id}
+											type={comp.type}
+											disabled={formikProps.isSubmitting || disabled}
+											className={classes.button}
+											size="large"
+											width="100%"
+											title={comp.text}
+										/>
+									)
+									: (
+										<SecondaryBackgroundButton
+											id={comp.id}
+											type={comp.type}
+											disabled={formikProps.isSubmitting || disabled}
+											className={classes.button}
+											size="large"
+											width="100%"
+											title={comp.text}
+										/>
+									)
 							)}
 						</div>
 					))}

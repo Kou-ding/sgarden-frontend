@@ -9,11 +9,9 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { useSnackbar } from "../utils/index.js";
 import Spinner from "../components/Spinner.js";
-import background from "../assets/images/background.png";
-import { authenticate, authenticateGoogle } from "../api/index.js";
+import background from "../assets/images/background.jpg";
+import { authenticate } from "../api/index.js";
 import Form from "../components/Form.js";
-
-const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: "300px",
 	},
 	subtitle: {
-		color: theme.palette.secondary.main,
+		color: theme.palette.third.main,
 		letterSpacing: theme.spacing(0.1),
 		maxWidth: "300px",
 	},
@@ -47,24 +45,6 @@ const SignIn = () => {
 
 	const handleShowPassword = () => {
 		setShowPassword(!showPassword);
-	};
-
-	const handleGoogleSuccess = async (e) => {
-		setIsSubmitting(true);
-
-		try {
-			const { success, token, message } = await authenticateGoogle(e?.credential);
-
-			if (success) {
-				navigate(`/auth/?token=${token}`);
-			} else {
-				error(message);
-			}
-		} catch (error_) {
-			console.log(error_);
-		}
-
-		setIsSubmitting(false);
 	};
 
 	const submitHandler = async (values) => {
@@ -90,21 +70,6 @@ const SignIn = () => {
 			sessionStorage.setItem("redirectTo", JSON.stringify(state?.from || { pathname: "/home" }));
 		} catch { /** */ }
 	}, [state]);
-
-	useEffect(() => {
-		try {
-			window.google.accounts.id.initialize({
-				client_id: REACT_APP_GOOGLE_CLIENT_ID,
-				callback: handleGoogleSuccess,
-			});
-			window.google.accounts.id.renderButton(
-				document.querySelector("#googleLoginButton"),
-				{ theme: "outline", size: "large" },
-			);
-			window.google.accounts.id.prompt();
-		} catch { /** */ }
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	const formContent = [
 		{
@@ -146,6 +111,7 @@ const SignIn = () => {
 			id: "submit",
 			type: "submit",
 			text: "Sign In",
+			buttonColor: "third",
 		},
 	];
 
@@ -156,13 +122,10 @@ const SignIn = () => {
 				<Grid item container direction="column" justifyContent="center" align="center" sm={5} xs={12} sx={{ "> .MuiGrid-item": { p: 1 } }}>
 					<Grid item mt={2}>
 						<Typography variant="h3" className={classes.title}>{"WELCOME"}</Typography>
-						<Typography variant="h5" className={classes.subtitle}>{"to eenspector Platform"}</Typography>
+						<Typography variant="h5" className={classes.subtitle}>{"to SGarden Platform"}</Typography>
 					</Grid>
 					<Grid item container direction="column" justifyContent="center" alignItems="center">
 						<Form content={formContent} validationSchema="authenticationSchema" onSubmit={submitHandler} />
-					</Grid>
-					<Grid item>
-						<div id="googleLoginButton" style={{ width: "200px" }} />
 					</Grid>
 					<Grid item container direction="column" justifyContent="center" alignItems="space-between">
 						<Grid item>
