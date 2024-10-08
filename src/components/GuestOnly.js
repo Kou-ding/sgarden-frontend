@@ -6,7 +6,7 @@ import { jwt } from "../utils/index.js";
 const GuestOnly = ({ c }) => {
 	const location = useLocation();
 	return jwt.isAuthenticated()
-		? <Navigate to="/home" state={{ from: location }} />
+		? <Navigate to="/dashboard" state={{ from: location }} />
 		: c;
 };
 

@@ -8,7 +8,7 @@ import api from "../api/index.js";
 const Auth = () => {
 	const location = useLocation();
 	const { error: error_ } = useSnackbar();
-	const [redirectTo, setRedirectTo] = useState("/home");
+	const [redirectTo, setRedirectTo] = useState("/dashboard");
 
 	useEffect(() => {
 		try {

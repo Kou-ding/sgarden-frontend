@@ -24,7 +24,7 @@ import ResetPassword from "./screens/ResetPassword.js";
 import SignUp from "./screens/SignUp.js";
 import InvitedSignUp from "./screens/InvitedSignUp.js";
 import Auth from "./screens/Auth.js";
-import Home from "./screens/Home.js";
+import Dashboard from "./screens/Dashboard.js";
 import Users from "./screens/Users.js";
 import { adjustColors, jwt, colorSuggestions } from "./utils/index.js";
 
@@ -94,7 +94,7 @@ const App = () => {
 								<Route path="reset-password" element={<GuestOnly c={<ResetPassword />} />} />
 								<Route path="sign-up" element={<GuestOnly c={<SignUp />} />} />
 								<Route path="register" element={<GuestOnly c={<InvitedSignUp />} />} />
-								<Route path="home" element={<Protected c={<Home />} />} />
+								<Route path="dashboard" element={<Protected c={<Dashboard />} />} />
 								<Route path="users" element={<Protected c={<Users />} />} />
 								<Route path="*" element={<NotFound />} />
 							</Routes>

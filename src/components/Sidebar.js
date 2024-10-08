@@ -73,6 +73,12 @@ const Sidebar = ({ isSmall: sidebarIsSmall }) => {
 
 	const buttons = [
 		{
+			text: "Dashboard",
+			handler: () => {
+				navigate("/dashboard");
+			},
+		},
+		{
 			text: "Users",
 			handler: () => {
 				navigate("/users");

@@ -67,7 +67,7 @@ const SignIn = () => {
 
 	useEffect(() => {
 		try {
-			sessionStorage.setItem("redirectTo", JSON.stringify(state?.from || { pathname: "/home" }));
+			sessionStorage.setItem("redirectTo", JSON.stringify(state?.from || { pathname: "/dashboard" }));
 		} catch { /** */ }
 	}, [state]);
 

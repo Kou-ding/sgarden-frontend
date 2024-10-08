@@ -131,17 +131,9 @@ const Header = ({ isAuthenticated }) => {
 
 	const pathnames = location.pathname.split("/").filter(Boolean);
 	const crumps = [];
-	crumps.push(
-		<CrumpLink to="/">
-			{"Home"}
-		</CrumpLink>,
-	);
 
 	for (const [ind, path] of pathnames.entries()) {
 		let text = capitalize(path);
-		// eslint-disable-next-line no-continue
-		if (path === "home") continue;
-
 		crumps.push(<CrumpLink to={`/${pathnames.slice(0, ind + 1).join("/")}`}>{text}</CrumpLink>);
 	}
 
