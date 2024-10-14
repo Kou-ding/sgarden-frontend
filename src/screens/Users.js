@@ -10,8 +10,10 @@ import Popup from "../components/Popup.js";
 import Search from "../components/Search.js";
 import Spinner from "../components/Spinner.js";
 import Form from "../components/Form.js";
+import Dropdown from "../components/Dropdown.js";
 import { isFuzzyMatch, useSnackbar, dayjs } from "../utils/index.js";
-import { getUsersData, inviteUser, removeUser } from "../api/index.js";
+import { getUsersData, inviteUser, removeUser, submitUserRole } from "../api/index.js";
+import { jwt } from "../utils/index.js";
 
 const Users = () => {
 	const { error, success } = useSnackbar();
@@ -21,6 +23,8 @@ const Users = () => {
 	const [filteredUsers, setFilteredUsers] = useState(users);
 	const [popupOpen, setPopupOpen] = useState(false);
 	const [deleteUser, setDeleteUser] = useState({ id: null, username: null });
+
+	const role = jwt.decode().role;
 
 	const fetchData = useCallback(
 		async () => {
@@ -71,6 +75,22 @@ const Users = () => {
 
 		setDeleteUser({ id: null, username: null });
 		await fetchData();
+		setIsLoading(false);
+	};
+
+	const submitRole = async (userId, newRole) => {
+		setIsLoading(true);
+		
+		try {
+			const { success: successCode } = await submitUserRole(userId, newRole);
+
+			if (successCode) {
+				success("Role changed successfully!");
+			} else {
+				error("Role change failed!");
+			}
+		} catch { /* empty */ }
+
 		setIsLoading(false);
 	};
 
@@ -172,7 +192,7 @@ const Users = () => {
 								<Grid item xs={3}>
 									<Typography>{"Username"}</Typography>
 								</Grid>
-								<Grid item xs={4} textAlign="center">
+								<Grid item xs={3} textAlign="center">
 									<Typography>{"E-mail"}</Typography>
 								</Grid>
 								<Grid item xs={2} textAlign="center">
@@ -180,6 +200,9 @@ const Users = () => {
 								</Grid>
 								<Grid item xs={2} textAlign="center">
 									<Typography>{"Last Active At"}</Typography>
+								</Grid>
+								<Grid item xs={1} textAlign="center">
+									<Typography>{"Role"}</Typography>
 								</Grid>
 								<Grid item xs={1} />
 							</Grid>
@@ -198,7 +221,7 @@ const Users = () => {
 											<Grid item xs={3}>
 												<Typography>{us.username}</Typography>
 											</Grid>
-											<Grid item xs={4} textAlign="center">
+											<Grid item xs={3} textAlign="center">
 												<Typography>{us.email}</Typography>
 											</Grid>
 											<Grid item xs={2} textAlign="center">
@@ -206,6 +229,13 @@ const Users = () => {
 											</Grid>
 											<Grid item xs={2} textAlign="center">
 												<Typography>{dayjs(us.lastActiveAt).format("DD/MM/YYYY HH:mm")}</Typography>
+											</Grid>
+											<Grid item xs={1} textAlign="center">
+												<Dropdown
+													items={["user", "admin"].map((role) => ({ value: role, text: role }))}
+													value={role}
+													onChange={(event) => submitRole(us._id, event.target.value)}
+												/>
 											</Grid>
 											<Grid item xs={1} textAlign="center">
 												<ToggleButton

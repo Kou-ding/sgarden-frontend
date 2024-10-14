@@ -125,7 +125,7 @@ const SignIn = () => {
 						<Typography variant="h5" className={classes.subtitle}>{"to SGarden Platform"}</Typography>
 					</Grid>
 					<Grid item container direction="column" justifyContent="center" alignItems="center">
-						<Form content={formContent} validationSchema="authenticationSchema" onSubmit={submitHandler} />
+						<Form content={formContent} validationSchema="authenticationSchema" toResetForm={false} onSubmit={submitHandler} />
 					</Grid>
 					<Grid item container direction="column" justifyContent="center" alignItems="space-between">
 						<Grid item>

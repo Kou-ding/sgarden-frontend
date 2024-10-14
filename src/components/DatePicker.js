@@ -22,6 +22,7 @@ const DatePicker = ({
 	disabled = false,
 	label = "Date",
 	views = ["day", "month", "year"],
+	inputFormat = "DD/MM/YYYY",
 	background = "third",
 	color = "white",
 	borderRadius = "10px",
@@ -43,7 +44,7 @@ const DatePicker = ({
 					views={views}
 					disabled={disabled}
 					label={label}
-					inputFormat="DD/MM/YYYY"
+					inputFormat={inputFormat}
 					value={customValue}
 					renderInput={(params) => <TextField {...params} />}
 					onChange={handleChange}
@@ -55,7 +56,7 @@ const DatePicker = ({
 					views={views}
 					disabled={disabled}
 					label={label}
-					inputFormat="DD/MM/YYYY"
+					inputFormat={inputFormat}
 					value={customValue}
 					renderInput={(params) => <TextField {...params} />}
 					onChange={handleChange}

@@ -13,6 +13,7 @@ import colors from "./_colors.scss";
 import "react-table-6/react-table.css";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
+import AdminOnly from "./components/AdminOnly.js";
 import Protected from "./components/Protected.js";
 import GuestOnly from "./components/GuestOnly.js";
 import ErrorFallback from "./components/ErrorFallback.js";
@@ -24,8 +25,9 @@ import ResetPassword from "./screens/ResetPassword.js";
 import SignUp from "./screens/SignUp.js";
 import InvitedSignUp from "./screens/InvitedSignUp.js";
 import Auth from "./screens/Auth.js";
-import Dashboard from "./screens/Dashboard.js";
 import Users from "./screens/Users.js";
+import Dashboard from "./screens/Dashboard.js";
+import Dashboard1 from "./screens/Dashboard1.js";
 import { adjustColors, jwt, colorSuggestions } from "./utils/index.js";
 
 const {
@@ -94,8 +96,9 @@ const App = () => {
 								<Route path="reset-password" element={<GuestOnly c={<ResetPassword />} />} />
 								<Route path="sign-up" element={<GuestOnly c={<SignUp />} />} />
 								<Route path="register" element={<GuestOnly c={<InvitedSignUp />} />} />
+								<Route path="users" element={<AdminOnly c={<Users />} />} />
 								<Route path="dashboard" element={<Protected c={<Dashboard />} />} />
-								<Route path="users" element={<Protected c={<Users />} />} />
+								<Route path="dashboard1" element={<Protected c={<Dashboard1 />} />} />
 								<Route path="*" element={<NotFound />} />
 							</Routes>
 						</main>

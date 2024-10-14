@@ -7,6 +7,8 @@ import { ExpandMore } from "@mui/icons-material";
 
 import Accordion from "./Accordion.js";
 
+import { jwt } from "../utils/index.js";
+
 const useStyles = makeStyles((theme) => ({
 	sidebar: {
 		height: "100%",
@@ -69,9 +71,17 @@ const Sidebar = ({ isSmall: sidebarIsSmall }) => {
 	const navigate = useNavigate();
 	const classes = useStyles();
 
+	const isAdmin = jwt.isAdmin();
+
 	useEffect(() => setIsSmall(sidebarIsSmall), [sidebarIsSmall]);
 
 	const buttons = [
+		...(isAdmin ? [{
+			text: "Users",
+			handler: () => {
+				navigate("/users");
+			},
+		}] : []),
 		{
 			text: "Dashboard",
 			handler: () => {
@@ -79,9 +89,9 @@ const Sidebar = ({ isSmall: sidebarIsSmall }) => {
 			},
 		},
 		{
-			text: "Users",
+			text: "Dashboard 1",
 			handler: () => {
-				navigate("/users");
+				navigate("/dashboard1");
 			},
 		},
 	];

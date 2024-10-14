@@ -18,6 +18,7 @@ const Plot = ({
 	width: plotWidth = "100%",
 	height: plotHeight = "100%",
 	background: plotBackground = "white",
+	annotations: plotAnnotations = [],
 }) => {
 	const [data, setData] = useState(plotData);
 	const [title, setTitle] = useState(plotTitle);
@@ -31,6 +32,7 @@ const Plot = ({
 	const [width, setWidth] = useState(plotWidth);
 	const [height, setHeight] = useState(plotHeight);
 	const [background, setBackground] = useState(plotBackground);
+	const [annotations, setAnnotations] = useState(plotAnnotations);
 
 	useEffect(() => {
 		setData(plotData);
@@ -80,6 +82,10 @@ const Plot = ({
 		setBackground(plotBackground);
 	}, [plotBackground]);
 
+	useEffect(() => {
+		setAnnotations(plotAnnotations);
+	}, [plotAnnotations]);
+
 	return (
 		<Plotly
 			data={data.map((d) => ({
@@ -90,10 +96,14 @@ const Plot = ({
 				name: d.title,
 				text: d.texts,
 				mode: d.mode,
-				marker: { color: colors?.[d?.color] || d?.color },
+				fill: d.fill,
+				line: d.line,
+				marker: { color: colors?.[d?.color] || d?.color, size: d?.markerSize ?? 6 },
 				values: d.values,
 				labels: d.labels,
 				textFont: { color: "white" },
+				hoverinfo: d.hoverinfo,
+				hovertemplate: d.hovertemplate,
 			}))}
 			layout={{
 				title: {
@@ -106,7 +116,9 @@ const Plot = ({
 				},
 				paper_bgcolor: colors?.[background] || background,
 				plot_bgcolor: colors?.[background] || background,
-				margin: { t: title ? 60 : 40, l: 40, b: 40, ...(!showLegend && { r: 40 }) },
+				margin: { t: title ? 60 : 40, l: 40, b: 80, ...(!showLegend && { r: 40 }) },
+				annotations,
+				xaxis: { tickangle: -45 },
 			}}
 			config={{
 				scrollZoom,

@@ -68,3 +68,4 @@ export const invitedSignUp = (username, email, password, token) => api.post("cre
 export const inviteUser = (email) => api.post("user", { email });
 export const removeUser = (id) => api.post("user/delete", { id });
 export const getUsersData = () => api.get("user");
+export const submitUserRole = (userId, role) => api.post("user/role", { id: userId, role });

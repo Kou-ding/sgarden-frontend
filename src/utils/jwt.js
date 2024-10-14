@@ -12,6 +12,14 @@ const jwt = {
 		const token = cookie.get("_sgarden");
 		return token && token !== "undefined";
 	},
+	isAdmin: () => {
+		const token = cookie.get("_sgarden");
+		if (token) {
+			const { role } = decode(token);
+			return role === "admin";
+		}
+		return false
+	},
 	decode: () => {
 		const token = cookie.get("_sgarden");
 		if (token) return decode(token);
