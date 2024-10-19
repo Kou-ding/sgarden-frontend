@@ -18,6 +18,7 @@ const Plot = ({
 	width: plotWidth = "100%",
 	height: plotHeight = "100%",
 	background: plotBackground = "white",
+	marginBottom: plotMarginBottom = 80,
 	annotations: plotAnnotations = [],
 }) => {
 	const [data, setData] = useState(plotData);
@@ -32,6 +33,7 @@ const Plot = ({
 	const [width, setWidth] = useState(plotWidth);
 	const [height, setHeight] = useState(plotHeight);
 	const [background, setBackground] = useState(plotBackground);
+	const [marginBottom, setMarginBottom] = useState(plotMarginBottom);
 	const [annotations, setAnnotations] = useState(plotAnnotations);
 
 	useEffect(() => {
@@ -83,6 +85,10 @@ const Plot = ({
 	}, [plotBackground]);
 
 	useEffect(() => {
+		setMarginBottom(plotMarginBottom);
+	}, [plotMarginBottom]);
+
+	useEffect(() => {
 		setAnnotations(plotAnnotations);
 	}, [plotAnnotations]);
 
@@ -116,7 +122,7 @@ const Plot = ({
 				},
 				paper_bgcolor: colors?.[background] || background,
 				plot_bgcolor: colors?.[background] || background,
-				margin: { t: title ? 60 : 40, l: 40, b: 80, ...(!showLegend && { r: 40 }) },
+				margin: { t: title ? 60 : 40, l: 40, b: marginBottom, ...(!showLegend && { r: 40 }) },
 				annotations,
 				xaxis: { tickangle: -45 },
 			}}
