@@ -4,6 +4,7 @@ import Dropdown from "../components/Dropdown.js";
 import Card from "../components/Card.js";
 import Plot from "../components/Plot.js";
 import DatePicker from "../components/DatePicker.js";
+import Map from "../components/Map.js";
 
 import colors from "../_colors.scss";
 
@@ -125,9 +126,10 @@ const Dashboard = () => {
                         </Grid>
                         <Grid item width="100%">
                             <Card title="Interactive Map">
-                                <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
-                                    <Typography variant="h6" color="textSecondary">Coming Soon</Typography>
-                                </Box>
+                                <Map />
+                                {/* <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
+                                    
+                                </Box> */}
                             </Card>
                         </Grid>
                 </Grid>

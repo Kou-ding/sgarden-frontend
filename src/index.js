@@ -29,6 +29,7 @@ import Users from "./screens/Users.js";
 import Dashboard from "./screens/Dashboard.js";
 import Dashboard1 from "./screens/Dashboard1.js";
 import { adjustColors, jwt, colorSuggestions } from "./utils/index.js";
+import Map from "./components/Map.js";
 
 const {
 	NODE_ENV,
@@ -99,6 +100,7 @@ const App = () => {
 								<Route path="users" element={<AdminOnly c={<Users />} />} />
 								<Route path="dashboard" element={<Protected c={<Dashboard />} />} />
 								<Route path="dashboard1" element={<Protected c={<Dashboard1 />} />} />
+								<Route path="map" element={<Protected c={<Map />} />} />
 								<Route path="*" element={<NotFound />} />
 							</Routes>
 						</main>
