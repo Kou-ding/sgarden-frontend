@@ -94,6 +94,12 @@ const Sidebar = ({ isSmall: sidebarIsSmall }) => {
 				navigate("/dashboard1");
 			},
 		},
+		{
+			text: "Dashboard 2",
+			handler: () => {
+				navigate("/dashboard2");
+			},
+		},
 	];
 
 	return (
