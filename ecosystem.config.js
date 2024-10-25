@@ -3,7 +3,7 @@ module.exports = {
 		name: "client",
 		script: "npm",
 		args: ["run", "serve"],
-		instances: 2,
+		instances: 1,
 		exec_mode: "cluster",
 	}],
 };
