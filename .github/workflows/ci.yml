@@ -3,6 +3,18 @@ name: ci
 on: push
 
 jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3002'
+        env:
+          REACT_APP_MAIN_SERVER_URL: https://sgarden-backend.onrender.com
   deploy:
     if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest

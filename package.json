@@ -112,7 +112,7 @@
 		"events": "^3.3.0",
 		"react-scripts": "^5.0.1",
 		"sass": "^1.58.3",
-		"serve": "^6.5.8",
+		"serve": "^14.2.4",
 		"source-map-explorer": "^2.5.3",
 		"start-server-and-test": "^2.0.8",
 		"url": "^0.11.0"
